@@ -20,7 +20,7 @@ correctSign(x, shift = TRUE)
 }
 
 \value{
-Returns a a list with 2 components:
+Returns a list with 2 components:
   \item{corrected}{corrected version of \code{x}}
   \item{modified}{logical, \code{TRUE} when any of the elements of \code{x} have been changed}
 These components can be extracted with the functions \code{correctedValue} and \code{isCorrected}.
