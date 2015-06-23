@@ -29,16 +29,14 @@ These components can be extracted with the functions \code{correctedValue} and \
 \author{Peter Konings
 }
 
-\seealso{\code{\link{RCI}}
-}
 \examples{
-data(kenya)
-kenya$stunting.shifted <- correctedValue(correctSign(kenya$stunting, shift = TRUE))
-kenya$stunting.imputed <- correctedValue(correctSign(kenya$stunting, shift = FALSE))
+data(Kenya)
+Kenya$stunting.shifted <- correctedValue(correctSign(Kenya$stunting, shift = TRUE))
+Kenya$stunting.imputed <- correctedValue(correctSign(Kenya$stunting, shift = FALSE))
 # show the effect of both methods
-plot(density(kenya$stunting, na.rm = TRUE))
-points(density(kenya$stunting.shifted, na.rm = TRUE), col = 'blue')
-points(density(kenya$stunting.imputed, na.rm = TRUE), col = 'green')
+plot(density(Kenya$stunting, na.rm = TRUE))
+points(density(Kenya$stunting.shifted, na.rm = TRUE), col = 'blue')
+points(density(Kenya$stunting.imputed, na.rm = TRUE), col = 'green')
 }
 
 \keyword{utilities}
