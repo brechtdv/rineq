@@ -1,9 +1,11 @@
 ## rpart_ci()
-## last update: 28/05/2015
+## Recursive Partitioning and Regression Trees using Concentration Index
+## last update: 14/06/2015
 ## ------------------------------------------------------------------------#
 
-## WEIGHTED RANK ----------------------------------------------------------#
-rank_wt <-
+## Weigthed rank ----------------------------------------------------------#
+
+rank.wt <-
 function(x, wt) {
   n <- length(x)
   r <- vector(length = n)
@@ -15,7 +17,10 @@ function(x, wt) {
   #wt <- wt[order(x)]
   wt[myOrder] <- wt[myOrder] * n / sum(wt)
 
-  ## use eq 4; I interpreted this as the sum included the half weight
+  ## calculate the fractional rank and return it in the original order of the variable
+  ## in the first term, we use a modified vector of weights starting with 0 and the last value chopped off
+  ## see Lerman & Yitzhaki eq. (2)
+  ## a loop is avoided by using the cumulative sum
   r[myOrder] <-
     (c(0, cumsum(wt[myOrder[-length(myOrder)]])) + wt[myOrder]/2) / n
 
@@ -23,7 +28,8 @@ function(x, wt) {
   return(r)
 }
 
-## CONCENTRATION INDEX ----------------------------------------------------#
+## Concentration Index ----------------------------------------------------#
+
 CI <- 
 function(y, wt) {
   # this aims to have a vector of goodness of length (n-1) as required. 
@@ -33,7 +39,7 @@ function(y, wt) {
     ci <- 0
 
   } else {
-    y[, 1] <- rank_wt(y[, 1], wt)
+    y[, 1] <- rank.wt(y[, 1], wt)
     wmean <- weighted.mean(y[, 2], wt) 
     ci <- abs(2 / wmean *
               cov.wt(as.matrix(data.frame(y[, c(1, 2)])), wt = wt)$cov[1,2])
@@ -43,7 +49,9 @@ function(y, wt) {
   return(ci)
 }
 
-## GENERALIZED CONCENTRATION INDEX ----------------------------------------#
+## Generalized Concentration Index ----------------------------------------#
+## see Clarke and al 2002
+
 CIg  <- 
 function(y, wt) {
   if (length(y) == 2) {
@@ -58,7 +66,9 @@ function(y, wt) {
 }
 
 
-## CONCENTRATION INDEX WITH ERREYGERS CORRECTION --------------------------#
+## Concentration Index with Erreygers Correction --------------------------#
+## see Erreygers (2009)
+
 CIc <- function(y, wt) {         
   if (length(y) == 2) {
     cic <- 0
@@ -72,7 +82,8 @@ CIc <- function(y, wt) {
 }
 
 
-## THE 'EVAL' FUNCTION ----------------------------------------------------#
+
+## The 'evaluation' function ----------------------------------------------#
 ## Called once per node
 ##  Produce a label (1 or more elements long) for labeling each node,
 ##  and a deviance.  The latter is
@@ -81,6 +92,7 @@ CIc <- function(y, wt) {
 ##       - does not need to be a deviance: any measure that gets larger
 ##            as the node is less acceptable is fine.
 ##       - the measure underlies cost-complexity pruning, however
+
 eval_ci  <- 
 function(y, wt, parms) {
   CI_fun <-
@@ -95,7 +107,7 @@ function(y, wt, parms) {
 }
 
 
-## THE 'SPLIT' FUNCTION ---------------------------------------------------#
+## The 'split' function ---------------------------------------------------#
 ## Called once per split variable per node
 ## If continuous=T
 ##   The actual x variable is ordered
@@ -120,6 +132,7 @@ function(y, wt, parms) {
 ## The reason for returning a vector of goodness is that the C routine
 ##   enforces the "minbucket" constraint. It selects the best return value
 ##   that is not too close to an edge.
+
 split_ci <-
 function(y, wt, x, parms, continuous) {
 
@@ -183,12 +196,13 @@ function(y, wt, x, parms, continuous) {
 }
 	
 
-## THE 'INIT' FUNCTION ----------------------------------------------------#
+## The 'init' function ---------------------------------------------------#
 ##   fix up y to deal with offsets
 ##   return a dummy parms list
 ##   numresp is the number of values produced by the eval routine's "label"
 ##   numy is the number of columns for y
 ##   summary is a function used to print one line in summary.rpart
+
 init_ci <-
 function(y, offset, parms = c("CI", "CIg", "CIc"), wt) {
   if (!is.matrix(y)) stop("y must be a matrix")
@@ -217,7 +231,8 @@ function(y, offset, parms = c("CI", "CIg", "CIc"), wt) {
 }
 
 
-## RPART WRAPPER FUNCTION -------------------------------------------------#
+## wrapper function: rpart + concentration index --------------------------#
+
 rpart_ci <-
 function(formula, data, weights, type = c("CI", "CIg", "CIc"),
   subset, na.action = na.rpart, model = FALSE, x = FALSE, y = TRUE,
@@ -245,3 +260,4 @@ function(formula, data, weights, type = c("CI", "CIg", "CIc"),
   ## return rpart output
   return(out)
 }
+
