@@ -54,7 +54,7 @@ Speybroeck \emph{et al.}, 2009
 
 \examples{
 data(Kenya)
-simple.model <- lm(stunting ~ meducY + sex +  wealth + urban, data = Kenya)
+simple.model <- lm(stunting ~ meduY + sex +  wealth + urban, data = Kenya)
 simple.contrib <- contribution(simple.model, Kenya$wealth)
 print(simple.contrib)
 plot(simple.contrib)
