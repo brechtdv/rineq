@@ -1,11 +1,11 @@
 ## rpart_ci()
 ## Recursive Partitioning and Regression Trees using Concentration Index
-## last update: 14/06/2015
+## last update: 28/06/2015
 ## ------------------------------------------------------------------------#
 
 ## Weigthed rank ----------------------------------------------------------#
 
-rank.wt <-
+rank_wt <-
 function(x, wt) {
   n <- length(x)
   r <- vector(length = n)
@@ -39,10 +39,10 @@ function(y, wt) {
     ci <- 0
 
   } else {
-    y[, 1] <- rank.wt(y[, 1], wt)
-    wmean <- weighted.mean(y[, 2], wt) 
-    ci <- abs(2 / wmean *
+    y[, 1] <- rank_wt(y[, 1], wt)
+    ci <- abs(2 / (sum(wt*y[, 2])/sum(wt)) *
               cov.wt(as.matrix(data.frame(y[, c(1, 2)])), wt = wt)$cov[1,2])
+
   }	
 
   ## return object
@@ -58,8 +58,9 @@ function(y, wt) {
     cig <- 0
 
   } else {
-    ci <- CI(y, wt)
-    cig <- ci * weighted.mean(y[, 2], wt)
+       cig <- abs(2 *
+              cov.wt(as.matrix(data.frame(y[, c(1, 2)])), wt = wt)$cov[1,2])
+
   }
 
   return(cig)
@@ -153,8 +154,8 @@ function(y, wt, x, parms, continuous) {
       indx <- i:n
       cir[i] <- CI_fun(y[indx,1:2],wt[indx])
       cil[i] <- CI_fun(y[-indx,1:2],wt[-indx])
-      wmeanr[i] <- weighted.mean(x[indx],wt[indx])
-      wmeanl[i] <- weighted.mean(x[-indx],wt[-indx])
+      wmeanr[i] <- sum(wt[indx] * x[indx])/sum(wt[indx])
+      wmeanl[i] <- sum(wt[-indx] * x[-indx])/sum(wt[-indx])
     }
     cir <- cir[-1]
     cil <- cil[-1]
