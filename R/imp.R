@@ -1,12 +1,12 @@
 ## imp()
 ## Evaluating variable importance in rpart_ci() trees
-## last update: 06/07/2015
+## last update: 07/07/2015
 ## ------------------------------------------------------------------------#
 
 
 
 imp <- 
-function(object, surrogates = TRUE, competes = TRUE, ...) {
+function(object, surrogates = TRUE, competes = FALSE, ...) {
 
  allVars <- colnames(attributes(object$terms)$factors)
  tmp <- rownames(object$splits)
@@ -42,16 +42,20 @@ function(object, surrogates = TRUE, competes = TRUE, ...) {
         }
      }
      splits$var <- factor(as.character(splits$var))
+     
      # Correcting the "splits" object: splits$improve isn't the "improve" 
      # but the "adj" for surrogate spits
-     splits <- within(splits, improve[adj != 0] <- improve[adj != 0] * adj[adj != 0])
+     for (i in 1: nrow(splits)) {
+          if (splits$type[i] == "primary") {
+              splits$correcting[i] <- splits$improve[i] 
+          } else { 
+              splits$correcting[i] <- splits$correcting[i-1]
+          }
+     }
+     splits <- within(splits, improve[adj != 0] <- correcting[adj != 0] * adj[adj != 0])
      if(!surrogates) splits <- subset(splits, type != "surrogate")
      if(!competes) splits <- subset(splits, type != "competing")
-     out <- aggregate(splits$improve,
-                 list(Variable = splits$var),
-                 sum,
-                 na.rm = TRUE)
-
+     out <- aggregate(splits$improve, list(Variable = splits$var), sum, na.rm = TRUE)
 
      if(!all(allVars %in% out$Variable)) {
         missingVars <- allVars[!(allVars %in% out$Variable)]
@@ -59,10 +63,9 @@ function(object, surrogates = TRUE, competes = TRUE, ...) {
         out <- rbind(out, zeros)
      }
  }
-
- out2 <- data.frame(Overall = out$x, Percent= out$x * 100 / sum(out$x))
+ 
+ out2 <- data.frame(overall.importance = out$x, relative.importance= out$x * 100 / sum(out$x))
  rownames(out2) <- out$Variable
- out2 <- out2[order(-out2$Percent),]
+ out2 <- out2[order(-out2$relative.importance),]
  out2
 }
-
