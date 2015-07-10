@@ -10,7 +10,7 @@ A sample dataset, based on a DHS household survey of Nigeria (2013).
   A data frame with 999 observations on the following 15 variables.
   \describe{
     \item{\code{vmeasles}}{a integer vector; with \code{0}: unvaccined and \code{1}: vaccined against measles}
-    \item{\code{skilled}}{a integer vector; with \code{0}: unassisted delivery and \code{1}: assisted delivery}
+    \item{\code{skilled}}{a factor; with levels \code{1}: unassisted delivery and \code{2}: assisted delivery}
     \item{\code{wealth}}{a numeric vector; a measure of the household's wealth}
     \item{\code{quintile}}{a factor vector; it gives the wealth quintiles}
     \item{\code{agechild}}{a integer vector; a measure of the child's age in months}
