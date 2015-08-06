@@ -72,15 +72,8 @@ Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalitie
 \author{
 Saveria Willimes, Peter Konings and Niko Speybroeck
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 data(ethiopia)
 example <- ci (x = ethiopia$wealth, y = ethiopia$vmeasles, wt = ethiopia$weight, type = "CIg")
@@ -88,7 +81,4 @@ plot(example)
 summary(example)
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

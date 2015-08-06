@@ -1,6 +1,6 @@
 \name{imp}
 \alias{imp}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Evaluating variable importance in \code{rpart_ci()} trees
 }
@@ -10,7 +10,7 @@ This function measures the variable importance for objects produced by rpart_ci(
 \usage{
 imp(object, surrogates = TRUE, competes = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{object}{an object of class \code{\link{rpart}}.}
   \item{surrogates}{optional. Should surrogate splits contribute to the importance calculation (logical)? If missing, \code{TRUE} is set by default.}
@@ -18,7 +18,7 @@ imp(object, surrogates = TRUE, competes = TRUE, ...)
   \item{...}{not used.}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+
 }
 \value{
 A data.frame with one row for each predictor variable (ordered by decreasing importance). The first column \code{overall.importance} is the variable importance measure (the total decrease in node impurities) and the second column \code{relative.importance} is the relative importance variable (sum to 100). 
@@ -29,12 +29,6 @@ Breiman, L., Friedman, J., Stone, C. J., & Olshen, R. A. (1984). Classification 
 \author{
 Saveria Willimès
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 
   \code{\link{rpart.control}}, \code{\link{rpart.object}},
@@ -48,7 +42,3 @@ example <- rpart_ci(
  Nigeria ,weight, type = "CI")
 imp(example, surrogates = FALSE, competes = TRUE )
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
