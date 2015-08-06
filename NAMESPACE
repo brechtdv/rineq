@@ -1,4 +1,3 @@
 import(rpart)
-export(rpart_ci)
-
+exportPattern("^[[:alpha:]]+")
 
