@@ -51,9 +51,9 @@ Saveria Willimès and Brecht Devleesschauwer, adapting from the \code{\link{rpart
 \examples{
 data(Nigeria)
 example <- rpart_ci(
-  cbind(wealth, skilled) ~  quintile + bord + agemother + agechild 
+  cbind(wealth, zscore) ~  quintile + bord + agemother + agechild + married
                             + region + ed + religion + rural + mocc,
- Nigeria ,weight, type = "CI")
+ Nigeria ,Nigeria$weight, type = "CI")
 par(mfrow = c(1,2), xpd = NA) # otherwise on some devices the text is clipped
 plot(example)
 text(example, use.n = TRUE)
