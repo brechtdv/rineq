@@ -70,7 +70,7 @@ Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalitie
 
 }
 \author{
-Saveria Willimès, Peter Konings and Niko Speybroeck
+Saveria Willimes, Peter Konings and Niko Speybroeck
 }
 \note{
 %%  ~~further notes~~
