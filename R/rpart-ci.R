@@ -1,6 +1,6 @@
 ## rpart_ci()
 ## Recursive Partitioning and Regression Trees using Concentration Index
-## last update: 28/06/2015
+## last update: 20/07/2015
 ## ------------------------------------------------------------------------#
 
 ## Weigthed rank ----------------------------------------------------------#
@@ -14,19 +14,19 @@ function(x, wt) {
   ## since population weights can be >1, rescale so that sum(wt) = n
   myOrder <- order(x)
 
-  #wt <- wt[order(x)]
-  wt[myOrder] <- wt[myOrder] * n / sum(wt)
+  wt[myOrder] <- wt[myOrder] / sum(wt)
 
   ## calculate the fractional rank and return it in the original order of the variable
   ## in the first term, we use a modified vector of weights starting with 0 and the last value chopped off
   ## see Lerman & Yitzhaki eq. (2)
   ## a loop is avoided by using the cumulative sum
   r[myOrder] <-
-    (c(0, cumsum(wt[myOrder[-length(myOrder)]])) + wt[myOrder]/2) / n
+    (c(0, cumsum(wt[myOrder[-length(myOrder)]])) + wt[myOrder]/2)
 
   ## return object
   return(r)
 }
+
 
 ## Concentration Index ----------------------------------------------------#
 
@@ -40,9 +40,8 @@ function(y, wt) {
 
   } else {
     y[, 1] <- rank_wt(y[, 1], wt)
-    ci <- abs(2 / (sum(wt*y[, 2])/sum(wt)) *
+    ci <- abs(2 / weighted.mean(y[,2],wt) *
               cov.wt(as.matrix(data.frame(y[, c(1, 2)])), wt = wt)$cov[1,2])
-
   }	
 
   ## return object
@@ -58,9 +57,8 @@ function(y, wt) {
     cig <- 0
 
   } else {
-       cig <- abs(2 *
-              cov.wt(as.matrix(data.frame(y[, c(1, 2)])), wt = wt)$cov[1,2])
-
+      y[, 1] <- rank_wt(y[, 1], wt)
+      cig <- abs(2 * cov.wt(as.matrix(data.frame(y[, c(1, 2)])), wt = wt)$cov[1,2])
   }
 
   return(cig)
@@ -75,8 +73,8 @@ CIc <- function(y, wt) {
     cic <- 0
 
   } else {
-    cig <- CIg(y, wt)
-    cic <- 4 * cig / (max(y[, 2], na.rm = TRUE) - min(y[, 2], na.rm = TRUE))
+    y[, 1] <- rank_wt(y[, 1], wt)
+    cic <- 4 * (abs(2 * cov.wt(as.matrix(data.frame(y[, c(1, 2)])), wt = wt)$cov[1,2])) / (max(y[, 2], na.rm = TRUE) - min(y[, 2], na.rm = TRUE))
   }
 
   return(cic)
@@ -261,4 +259,5 @@ function(formula, data, weights, type = c("CI", "CIg", "CIc"),
   ## return rpart output
   return(out)
 }
+
 

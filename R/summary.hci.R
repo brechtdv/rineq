@@ -1,11 +1,12 @@
 summary.hci <-
-function(object, ...)
+function(x, ...)
     {
-    if (!any(class(object) == 'hci')) stop("Object is not of class hci")
+    if (!any(class(x) == 'hci')) stop("Object is not of class hci")
     cat("Call:\n")
-    print(object$call)
-    cat("\nHealth Concentration Index:\n", object$concentrationIndex,"\n\n")
-    cat("Variance:\n",object$variance,"\n\n")
-    cat("95% Confidence Interval:\n", confint(object), "\n")
+    print(x$call)
+    cat("\nType of Concentration Index:\n", x$type,"\n")
+    cat("\nHealth Concentration Index:\n", x$concentrationIndex,"\n\n")
+    cat("Variance:\n",x$variance,"\n\n")
+    cat("95% Confidence Interval:\n", confint(x), "\n")
     }
 

@@ -36,7 +36,9 @@ Saveria Willimès
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+
+  \code{\link{rpart.control}}, \code{\link{rpart.object}},
+  \code{\link{summary.rpart}}, \code{\link{print.rpart}}
 }
 \examples{
 data(Nigeria)
