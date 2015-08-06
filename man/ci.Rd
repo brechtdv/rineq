@@ -75,8 +75,8 @@ Saveria Willimes, Peter Konings and Niko Speybroeck
 
 
 \examples{
-data(ethiopia)
-example <- ci (x = ethiopia$wealth, y = ethiopia$vmeasles, wt = ethiopia$weight, type = "CIg")
+data(Nigeria)
+example <- ci (x = Nigeria$wealth, y = Nigeria$vmeasles, wt = Nigeria$weight, type = "CIg")
 plot(example)
 summary(example)
   }

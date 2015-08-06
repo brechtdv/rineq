@@ -24,4 +24,3 @@ Description: Functions to calculate the relative, generalized, and Erreygers
     regression and binary trees.
 Depends: R (>= 3.0.0), rpart
 License: GPL-2 | GPL-3
-LazyData: yes
