@@ -24,6 +24,7 @@ A sample dataset, based on a DHS household survey of Nigeria (2013).
     \item{\code{region}}{a integer vector; it gives the region of residence}
     \item{\code{religion}}{a integer vector; it gives the household's religion}
     \item{\code{weight}}{a numeric vector; it gives the sample weight}
+    \item{\code{zscore}}{a numeric vector; it gives the height-for-age standard deviation (an indicator of malnutrition)}
     
   }
 }
