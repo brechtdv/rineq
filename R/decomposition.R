@@ -22,7 +22,7 @@ function(outcome, betas, mm, ranker, wt, correction)
     # use only the observations of the ranking variable that are actually used in the model
     # the intermediate cis returns a list with objects of class hci
     # indices stores the values of the concentration index only
-    cis <- apply(mm[,-1], 2, RCI, x = ranker[rows], wt = wt)
+    cis <- apply(mm[,-1], 2, ci, x = ranker[rows], wt = wt)
     indices <- sapply(cis, concentrationIndex)
     confints <- sapply(cis, confint)
     
@@ -40,7 +40,7 @@ function(outcome, betas, mm, ranker, wt, correction)
     # between the overall wealth variable (using only the observations used in the model)
     # and the health outcome; use the sampling weights used in the model
     # then subtract the sum of all partial contributions
-    CIoverall <- RCI(ranker[rows], as.numeric(outcome), wt)
+    CIoverall <- ci(ranker[rows], as.numeric(outcome), wt)
     CIresid <- concentrationIndex(CIoverall) - sumOfContributions
     
     # add the residual CI to the contributions vector and name it
