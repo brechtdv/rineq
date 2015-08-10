@@ -29,16 +29,12 @@ Breiman, L., Friedman, J., Stone, C. J., & Olshen, R. A. (1984). Classification 
 \author{
 Saveria Willimès
 }
-\seealso{
 
-  \code{\link{rpart.control}}, \code{\link{rpart.object}},
-  \code{\link{summary.rpart}}, \code{\link{print.rpart}}
-}
 \examples{
 data(Nigeria)
 example <- rpart_ci(
   cbind(wealth, zscore) ~  quintile + bord + agemother + agechild 
                             + region + ed + religion + rural + mocc,
- Nigeria ,weight, type = "CI")
+ Nigeria ,Nigeria$weight, type = "CI")
 imp(example, surrogates = FALSE, competes = TRUE )
 }
