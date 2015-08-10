@@ -64,7 +64,7 @@ function(object, surrogates = TRUE, competes = FALSE, ...) {
      }
  }
  
- out2 <- data.frame(overall.importance = out$x, relative.importance= out$x * 100 / sum(out$x))
+ out2 <- data.frame(overall.importance = out$x, relative.importance= out$x * 100 / max(out$x, na.rm = TRUE))
  rownames(out2) <- out$Variable
  out2 <- out2[order(-out2$relative.importance),]
  out2

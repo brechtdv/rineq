@@ -21,7 +21,7 @@ imp(object, surrogates = TRUE, competes = TRUE, ...)
 
 }
 \value{
-A data.frame with one row for each predictor variable (ordered by decreasing importance). The first column \code{overall.importance} is the variable importance measure (the total decrease in node impurities) and the second column \code{relative.importance} is the relative importance variable (sum to 100). 
+A data.frame with one row for each predictor variable (ordered by decreasing importance). The first column \code{overall.importance} is the variable importance measure (the total decrease in node impurities) and the second column \code{relative.importance} is the relative importance variable. 
 }
 \references{
 Breiman, L., Friedman, J., Stone, C. J., & Olshen, R. A. (1984). Classification and regression trees. CRC press.
@@ -37,7 +37,7 @@ Saveria Willimès
 \examples{
 data(Nigeria)
 example <- rpart_ci(
-  cbind(wealth, skilled) ~  quintile + bord + agemother + agechild 
+  cbind(wealth, zscore) ~  quintile + bord + agemother + agechild 
                             + region + ed + religion + rural + mocc,
  Nigeria ,weight, type = "CI")
 imp(example, surrogates = FALSE, competes = TRUE )
