@@ -76,9 +76,9 @@ Saveria Willimes, Peter Konings and Niko Speybroeck
 
 \examples{
 data(Nigeria)
-example <- ci (x = Nigeria$wealth, y = Nigeria$vmeasles, wt = Nigeria$weight, type = "CIg")
+example <- ci (x = Nigeria$wealth, y = Nigeria$zscore, wt = Nigeria$weight, type = "CIg")
 plot(example)
 summary(example)
   }
-}
+
 
