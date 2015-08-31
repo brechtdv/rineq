@@ -20,7 +20,7 @@ rpart_ci(formula, data, weights, type = c("CI", "CIg", "CIc"),
   \item{model}{if logical: keep a copy of the model frame in the result? If the input value for model is a model frame (likely from an earlier call to the rpart function), then this frame is used rather than constructing new data.}
   \item{x}{keep a copy of the x matrix in the result.}
   \item{y}{keep a copy of the dependent variable in the result. If missing and model is supplied this defaults to FALSE.}
-  \item{control}{optional case weight}
+  \item{control}{a list of options that control details of the \code{rpart} algorithm.  See \code{\link{rpart.control}}.}
   \item{cost}{a vector of non-negative costs, one for each variable in the model. Defaults to one for all variables. These are scalings to be applied when considering splits, so the improvement on splitting on a variable is divided by its cost in deciding which split to choose.}
   \item{...}{arguments to \code{rpart.control} may also be specified in the call to \code{rpart_cil}. They are checked against the list of valid arguments.}
 }
