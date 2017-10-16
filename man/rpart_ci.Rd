@@ -4,8 +4,8 @@
 \description{Fit an \code{\link{rpart}} model using the concentration index as a measure of deviance.}
 \usage{
 rpart_ci(formula, data, weights, type = c("CI", "CIg", "CIc"), 
-    subset, na.action = na.rpart, model = FALSE, x = FALSE, 
-    y = TRUE, control, cost, ...) 
+         subset, na.action = na.rpart, model = FALSE, x = FALSE, 
+         y = TRUE, control, cost, ...) 
 }
 \arguments{
   \item{formula}{a \code{\link{formula}}, with y as a two columns object (the first one must be the wealth variable and the second one the health outcome variable) and no interaction terms. If it's a data frame that is taken as the model frame, see \code{\link{model.frame}}.}
@@ -42,11 +42,15 @@ Saveria Willimes and Brecht Devleesschauwer, adapting from the \code{\link{rpart
 }
 \examples{
 data(nigeria)
-example <- rpart_ci(
-  cbind(wealth, zscore) ~ quintile + bord + agemother + agechild + married
-                            + region + ed + religion + rural + mocc,
- data = nigeria, nigeria$weight, type = "CI")
-par(mfrow = c(1,2), xpd = NA) # otherwise on some devices the text is clipped
-plot(example)
-text(example, use.n = TRUE)
+
+tree <-
+rpart_ci(
+  cbind(wealth, zscore) ~
+    quintile + ed + rural + region + male + bord + agechild + agemother,
+ data = nigeria,
+ weights = nigeria$weight,
+ type = "CI")
+
+plot(tree, xpd = NA)
+text(tree, use.n = TRUE)
 }

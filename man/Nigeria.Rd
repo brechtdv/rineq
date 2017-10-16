@@ -20,7 +20,7 @@
     \item{\code{weight}}{a numeric vector; it gives the sample weight}
     \item{\code{male}}{...}
     \item{\code{zscore}}{a numeric vector; it gives the height-for-age standard deviation (an indicator of malnutrition)}
-    \item{\code{zscre1}}{...}
+    \item{\code{zscore1}}{...}
     \item{\code{zscore2}}{...}  
   }
 }

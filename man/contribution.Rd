@@ -30,11 +30,10 @@ contribution(object, ranker, correction = TRUE)
 }
 
 \arguments{
-  \item{object}{an object of class \code{coxph}, \code{glm}, \code{lm} or \code{svyglm}. The outcome should be the health variable and the predictors the components.}
+  \item{object}{for \code{contribution()}: an object of class \code{coxph}, \code{glm}, \code{lm} or \code{svyglm}; the outcome should be the health variable and the predictors the components. For \code{summary()}: an object of class \code{decomposition}.}
   \item{ranker}{a numeric vector containing the wealth variable, from the same dataframe as the outcome.}
   \item{correction}{a logical indicating whether the global and partial RCIs should be corrected for negative values using imputation.}
   \item{x}{an object of class \code{decomposition}.}
-  \item{object}{an object of class \code{decomposition}.}
   \item{decreasing}{should contributions be sorted in decreasing order? Defaults to \code{TRUE}.}
   \item{\dots}{other arguments to be passed on to the concerned methods.}
 }
