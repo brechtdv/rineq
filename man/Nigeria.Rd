@@ -7,21 +7,20 @@
 \format{
   A data frame with 999 observations on the following 15 variables.
   \describe{
-    \item{\code{wealth}}{a numeric vector; a measure of the household's wealth}
-    \item{\code{quintile}}{a factor ; it gives the wealth quintiles}
-    \item{\code{agechild}}{a integer vector; a measure of the child's age in months}
-    \item{\code{bord}}{a integer vector; it gives the birth order}
-    \item{\code{agemother}}{a integer vector; a measure of the mother's age in years}
+    \item{\code{wealth}}{a numeric vector; the household's wealth}
+    \item{\code{quintile}}{a factor; the household's wealth quintile}
+    \item{\code{agechild}}{a integer vector; the child's age in months}
+    \item{\code{bord}}{a integer vector; the birth order}
+    \item{\code{agemother}}{a integer vector; the mother's age in years}
     \item{\code{ed}}{a factor with levels "\code{education}" and "\code{no education}"}
     \item{\code{rural}}{a factor with levels "\code{N}": urban and "\code{Y}":rural}
-    \item{\code{region}}{a factor with levels "\code{a}","\code{b}","\code{c}","\code{d}","\code{e}","\code{f}"; it gives the region of residence}
-    \item{\code{reg}}{...}
-    \item{\code{PSU}}{...}
-    \item{\code{weight}}{a numeric vector; it gives the sample weight}
-    \item{\code{male}}{...}
-    \item{\code{zscore}}{a numeric vector; it gives the height-for-age standard deviation (an indicator of malnutrition)}
-    \item{\code{zscore1}}{...}
-    \item{\code{zscore2}}{...}  
+    \item{\code{region}}{a factor; region of residence}
+    \item{\code{reg}}{a factor; region in which the respondent was interviewed}
+    \item{\code{PSU}}{a numeric vector; cluster number (enumeration areas drawn from census files)}
+    \item{\code{weight}}{a numeric vector; the sample weight}
+    \item{\code{male}}{a factor; sex of the child (1= male, 0= female)}
+    \item{\code{zscore}}{a numeric vector; the height-for-age standard deviation (an indicator of malnutrition)}
+    \item{\code{zscore1}}{a numeric vector; transformed z-score: the minimum value was subtracted to all observations to have only positive values}
   }
 }
 
