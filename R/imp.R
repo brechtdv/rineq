@@ -1,9 +1,6 @@
 ## imp()
 ## Evaluating variable importance in rpart_ci() trees
-## last update: 07/07/2015
 ## ------------------------------------------------------------------------#
-
-
 
 imp <- 
 function(object, surrogates = TRUE, competes = FALSE, ...) {
@@ -52,9 +49,9 @@ function(object, surrogates = TRUE, competes = FALSE, ...) {
               splits$correcting[i] <- splits$correcting[i-1]
           }
      }
-     splits <- within(splits, improve[adj != 0] <- correcting[adj != 0] * adj[adj != 0])
-     if(!surrogates) splits <- subset(splits, type != "surrogate")
-     if(!competes) splits <- subset(splits, type != "competing")
+     splits <- within(splits, improve[splits$adj != 0] <- splits$correcting[splits$adj != 0] * splits$adj[splits$adj != 0])
+     if(!surrogates) splits <- subset(splits, splits$type != "surrogate")
+     if(!competes) splits <- subset(splits, splits$type != "competing")
      out <- aggregate(splits$improve, list(Variable = splits$var), sum, na.rm = TRUE)
 
      if(!all(all_vars %in% out$Variable)) {
