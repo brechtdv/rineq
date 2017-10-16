@@ -32,7 +32,7 @@ contribution(object, ranker, correction = TRUE)
 }
 }
 \details{
-If \code{correction} is \code{TRUE} negative values of components or outcome are corrected using \code{\link{correctSign}} with option \code{shift = FALSE}.
+If \code{correction} is \code{TRUE} negative values of components or outcome are corrected using \code{\link{correct_sign}} with option \code{shift = FALSE}.
 }
 \value{
 An object of class \code{decomposition} containing the following components
@@ -51,11 +51,11 @@ Speybroeck \emph{et al.}, 2009
 }
 
 \examples{
-data(Kenya)
-simple.model <- lm(stunting ~ meduY + sex +  wealth + urban, data = Kenya)
-simple.contrib <- contribution(simple.model, Kenya$wealth)
-print(simple.contrib)
-plot(simple.contrib)
+data(kenya)
+simple_model <- lm(stunting ~ meduY + sex +  wealth + urban, data = kenya)
+simple_contrib <- contribution(simple_model, kenya$wealth)
+print(simple_contrib)
+plot(simple_contrib)
 }
 
 \keyword{manip}

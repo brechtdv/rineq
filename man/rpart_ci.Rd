@@ -4,7 +4,7 @@
 \description{Fit an \code{\link{rpart}} model using the concentration index as a measure of deviance.}
 \usage{
 rpart_ci(formula, data, weights, type = c("CI", "CIg", "CIc"), 
-    subset, na.action = na.rpart, method, model = FALSE, x = FALSE, 
+    subset, na.action = na.rpart, model = FALSE, x = FALSE, 
     y = TRUE, control, cost, ...) 
 }
 \arguments{
@@ -14,7 +14,6 @@ rpart_ci(formula, data, weights, type = c("CI", "CIg", "CIc"),
   \item{type}{one of \code{"CI"}, \code{"CIg"}, \code{"CIc"}. If type is missing, "CI" is chosen as the default action. \code{"CI"} corresponds to the Concentration Index, \code{"CIg"} to Generalized Concentration Index (see Clarke and al, 2002) and \code{"CIc"} to Corrected Concentration Index (see Erreygers, 2009).}
   \item{subset}{optional expression saying that only a subset of the rows of the data should be used in the fit.}
   \item{na.action}{the default action deletes all observations for which y is missing, but keeps those in which one or more predictors are missing.}
-  \item{method}{by default, the concentration index' method is used according to the \code{type} argument. If no \code{type} argument is specified, the \code{"CI"} method is used}
   \item{model}{if logical: keep a copy of the model frame in the result? If the input value for model is a model frame (likely from an earlier call to the rpart function), then this frame is used rather than constructing new data.}
   \item{x}{keep a copy of the x matrix in the result.}
   \item{y}{keep a copy of the dependent variable in the result. If missing and model is supplied this defaults to FALSE.}
@@ -44,7 +43,7 @@ Saveria Willimès and Brecht Devleesschauwer, adapting from the \code{\link{rpart
 \examples{
 data(nigeria)
 example <- rpart_ci(
-  cbind(wealth, zscore) ~  quintile + bord + agemother + agechild + married
+  cbind(wealth, zscore) ~ quintile + bord + agemother + agechild + married
                             + region + ed + religion + rural + mocc,
  data = nigeria, nigeria$weight, type = "CI")
 par(mfrow = c(1,2), xpd = NA) # otherwise on some devices the text is clipped

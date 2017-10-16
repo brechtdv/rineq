@@ -9,7 +9,7 @@
 \description{The Relative Concentration Index is not bonded between [-1,1] if the health variable contains both negative and positive values. This function corrects for this either by imputing a value of 0 for all negative values or by subtracting the minimum value.
 }
 \usage{
-correctSign(x, shift = TRUE)
+correct_sign(x, shift = TRUE)
 }
 
 \arguments{
@@ -26,17 +26,16 @@ Returns a list with 2 components:
 These components can be extracted with the functions \code{correctedValue} and \code{isCorrected}.
 }
 
-\author{Peter Konings
-}
+\author{Peter Konings}
 
 \examples{
-data(Kenya)
-Kenya$stunting.shifted <- correctedValue(correctSign(Kenya$stunting, shift = TRUE))
-Kenya$stunting.imputed <- correctedValue(correctSign(Kenya$stunting, shift = FALSE))
+data(kenya)
+kenya$stunting.shifted <- corrected_value(correct_sign(kenya$stunting, shift = TRUE))
+kenya$stunting.imputed <- corrected_value(correct_sign(kenya$stunting, shift = FALSE))
 # show the effect of both methods
-plot(density(Kenya$stunting, na.rm = TRUE))
-points(density(Kenya$stunting.shifted, na.rm = TRUE), col = 'blue')
-points(density(Kenya$stunting.imputed, na.rm = TRUE), col = 'green')
+plot(density(kenya$stunting, na.rm = TRUE))
+points(density(kenya$stunting.shifted, na.rm = TRUE), col = 'blue')
+points(density(kenya$stunting.imputed, na.rm = TRUE), col = 'green')
 }
 
 \keyword{utilities}

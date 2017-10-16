@@ -14,7 +14,7 @@ This function calculates the relative concentration index (Kakwani et al), the g
 }
 
 \usage{
-ci(x, y, wt = NULL, type = NULL)
+ci(x, y, wt = NULL, type = c("CI", "CIg", "CIc"))
 
 concentration_index(object)
 
@@ -34,6 +34,10 @@ a numeric variable containing the wealth measure.
   \item{wt}{
 a numeric variable containing the sample weights. Defaults to \code{NULL}, which is equal to a constant sample weight for all cases.
 }
+  \item{type}{
+the type of concentration index to be calculated: relative concentration index (\code{CI}), generalized concentration index (\code{CIg}), or concentration index with Erreygers Correction \code{CIc}.
+}
+
   \item{object}{
 an object of class \code{hci} () the result of a call to \code{RCI}).
 }
@@ -72,7 +76,6 @@ Kakwani, N., Wagstaff, A., & Van Doorslaer, E. (1997). Socioeconomic inequalitie
 \author{
 Saveria Willimes, Peter Konings and Niko Speybroeck
 }
-
 
 \examples{
 data(nigeria)

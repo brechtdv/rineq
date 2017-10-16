@@ -5,7 +5,7 @@
 
 
 ci <-
-function(x, y, wt = NULL, type = NULL) {
+function(x, y, wt = NULL, type = c("CI", "CIg", "CIc")) {
 
 	# x: income, wealth,... variable (required)
 	# y: health variable (required)
@@ -18,6 +18,9 @@ function(x, y, wt = NULL, type = NULL) {
 	# if no wt argument is given (default), set all sampling weights to 1.
 	# sum(weights) = 1, see Lerman & Yitzhaki (1989), par. 2
 	if (is.null(wt)) wt <- rep(1, length(x))
+
+	# check type argument
+    type <- match.arg(type)
 	
 	# drop all observations with missing values
 	if (length(wt) == 1) wt <- rep(wt, length(x))
@@ -53,7 +56,7 @@ function(x, y, wt = NULL, type = NULL) {
 			2 - qilag - qi
 	varC <- (sum(ai^2) / n - (1 + concentration_index)^2) / n
 
-	# calculate the different type of concentration index
+	# calculate the different types of concentration index
 	
       if (is.null(type)) {
                  concentration_index <- concentration_index
@@ -82,4 +85,3 @@ function(x, y, wt = NULL, type = NULL) {
 	class(ci) <- "hci"
 	return(ci)
 }
-
