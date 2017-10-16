@@ -25,11 +25,11 @@ A data.frame with one row for each predictor variable (ordered by decreasing imp
 Breiman, L., Friedman, J., Stone, C. J., & Olshen, R. A. (1984). Classification and regression trees. CRC press.
 }
 \author{
-Saveria Willimès
+Saveria Willimes
 }
 
 \examples{
-data(Nigeria)
+data(nigeria)
 example <- rpart_ci(
   cbind(wealth, zscore) ~ quintile + bord + agemother + agechild 
                             + region + ed + religion + rural + mocc,

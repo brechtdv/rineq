@@ -31,7 +31,7 @@ rpart_ci(formula, data, weights, type = c("CI", "CIg", "CIc"),
 }
 
 \author{
-Saveria Willimès and Brecht Devleesschauwer, adapting from the \code{\link{rpart}}
+Saveria Willimes and Brecht Devleesschauwer, adapting from the \code{\link{rpart}}
   package by Terry M.Therneau and Beth Atkinson.
 }
 
