@@ -29,13 +29,15 @@ These components can be extracted with the functions \code{correctedValue} and \
 \author{Peter Konings}
 
 \examples{
-data(kenya)
-kenya$stunting.shifted <- corrected_value(correct_sign(kenya$stunting, shift = TRUE))
-kenya$stunting.imputed <- corrected_value(correct_sign(kenya$stunting, shift = FALSE))
-# show the effect of both methods
-plot(density(kenya$stunting, na.rm = TRUE))
-points(density(kenya$stunting.shifted, na.rm = TRUE), col = 'blue')
-points(density(kenya$stunting.imputed, na.rm = TRUE), col = 'green')
+data(nigeria)
+
+nigeria$zscore.shifted <- corrected_value(correct_sign(nigeria$zscore, shift = TRUE))
+nigeria$zscore.imputed <- corrected_value(correct_sign(nigeria$zscore, shift = FALSE))
+
+## compare the effect of both methods
+plot(density(nigeria$zscore, na.rm = TRUE))
+points(density(nigeria$zscore.shifted, na.rm = TRUE), col = 'blue')
+points(density(nigeria$zscore.imputed, na.rm = TRUE), col = 'green')
 }
 
 \keyword{utilities}
