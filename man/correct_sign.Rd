@@ -1,8 +1,8 @@
 \name{correctSign}
 \Rdversion{1.1}
-\alias{correctSign}
-\alias{correctedValue}
-\alias{isCorrected}
+\alias{correct_sign}
+\alias{corrected_value}
+\alias{is_corrected}
 
 \title{Corrects negative values in the health variable
 }

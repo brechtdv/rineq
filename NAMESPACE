@@ -1,8 +1,6 @@
 import(rpart)
 
-export(CI)
-export(CIg)
-export(CIc)
+export(ci)
 export(concentration_index)
 export(imp)
 export(rank_wt)

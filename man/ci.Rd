@@ -5,8 +5,8 @@
 \alias{default.hci}
 \alias{print.hci}
 \alias{summary.hci}
-\alias{concentrationIndex}
-\alias{varianceConcentrationIndex}
+\alias{concentration_index}
+\alias{variance_concentration_index}
 \title{A function to calculate the concentration index.}
 
 \description{
@@ -16,15 +16,15 @@ This function calculates the relative concentration index (Kakwani et al), the g
 \usage{
 ci(x, y, wt = NULL, type = NULL)
 
-concentrationIndex(object)
+concentration_index(object)
 
 \method{plot}{hci}(x, ...)
 \method{print}{hci}(x, ...)
 \method{summary}{hci}(object, ...)
 \method{confint}{hci}(object, parm = NULL, level = 0.95, ...)
-varianceConcentrationIndex(object)
+variance_concentration_index(object)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
  \item{x}{For \code{ci}, a numeric variable containing the health measure. For the \code{print} and \code{plot} methods: an object of class \code{hci}.
 }
@@ -40,7 +40,6 @@ an object of class \code{hci} () the result of a call to \code{RCI}).
   \item{parm}{
 always set to \code{NULL}; provided for consistency with the generic \code{confint}.  
 }
-
   \item{level}{
 confidence level at which confidence intervals should be calculated. Defaults to 0.95.
 }
@@ -51,12 +50,12 @@ arguments to pass on to \code{plot}, \code{print} and \code{summary}.
 \details{
 \code{ci} returns the concentration index in an object of class \code{hci}.
 A number of extractor functions have been defined. The \code{plot} function returns a plot of the Lorenz curve.
-
 }
+
 \value{For \code{ci}, an object of class \code{hci}; this is a list containing the following components:
-\item{concentrationIndex}{concentration index. The type of concentration index depends on the chosen \code{type} argument.}
+\item{concentration_index}{concentration index. The type of concentration index depends on the chosen \code{type} argument.}
 \item{varC}{variance of the concentration index}
-\item{fractionalRank}{weighted fractional rank for each case}
+\item{fractional_rank}{weighted fractional rank for each case}
 \item{outcome}{health measure for each case}
 \item{n}{number of cases}
 \item{call}{the original call to \code{RCI}}
@@ -76,10 +75,8 @@ Saveria Willimes, Peter Konings and Niko Speybroeck
 
 
 \examples{
-data(Nigeria)
-example <- ci (x = Nigeria$wealth, y = Nigeria$zscore, wt = Nigeria$weight, type = "CIg")
+data(nigeria)
+example <- with(nigeria, ci(x = wealth, y = zscore, wt = weight, type = "CIg"))
 plot(example)
 summary(example)
-  }
-
-
+}

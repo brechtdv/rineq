@@ -1,11 +1,9 @@
 \name{Nigeria}
-\alias{Nigeria}
+\alias{nigeria}
 \docType{data}
 \title{Sample dataset}
-\description{
-A sample dataset, based on a DHS household survey of Nigeria (2013).
-}
-\usage{data("Nigeria")}
+\description{A sample dataset, based on a DHS household survey of Nigeria (2013).}
+\usage{data(nigeria)}
 \format{
   A data frame with 999 observations on the following 14 variables.
   \describe{
@@ -26,17 +24,10 @@ A sample dataset, based on a DHS household survey of Nigeria (2013).
         
   }
 }
-\details{
-%%  ~~ If necessary, more details than the __description__ above ~~
-}
-\source{
-\url{http://www.measuredhs.com}
-}
-\references{
-%%  ~~ possibly secondary sources and usages ~~
-}
+
+\source{\url{http://www.measuredhs.com}}
 \examples{
-data(Nigeria)
-names(Nigeria)
+data(nigeria)
+names(nigeria)
 }
 \keyword{datasets}

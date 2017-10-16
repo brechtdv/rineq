@@ -1,12 +1,9 @@
 \name{Kenya}
-\Rdversion{1.1}
 \alias{kenya}
 \docType{data}
 \title{Sample dataset}
-\description{
-A sample dataset, based on a DHS household survey of Kenya (2003).
-}
-\usage{Kenya}
+\description{A sample dataset, based on a DHS household survey of Kenya (2003).}
+\usage{data(kenya)}
 \format{
   A data frame with 999 observations on the following 6 variables.
   \describe{
@@ -22,7 +19,7 @@ A sample dataset, based on a DHS household survey of Kenya (2003).
 \url{http://www.measuredhs.com}
 }
 \examples{
-data(Kenya)
-str(Kenya)
+data(kenya)
+str(kenya)
 }
 \keyword{datasets}

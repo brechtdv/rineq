@@ -5,7 +5,6 @@
 \alias{contribution.lm}
 \alias{contribution.svyglm}
 \alias{decomposition}
-\alias{default.decomposition}
 \alias{plot.decomposition}
 \alias{print.decomposition}
 \alias{summary.decomposition}
