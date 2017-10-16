@@ -57,5 +57,3 @@ simple_contrib <- contribution(simple_model, kenya$wealth)
 print(simple_contrib)
 plot(simple_contrib)
 }
-
-\keyword{manip}
