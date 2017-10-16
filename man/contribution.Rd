@@ -1,5 +1,4 @@
 \name{contribution}
-\Rdversion{1.1}
 \alias{contribution}
 \alias{contribution.coxph}
 \alias{contribution.glm}

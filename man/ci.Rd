@@ -7,11 +7,12 @@
 \alias{summary.hci}
 \alias{concentrationIndex}
 \alias{varianceConcentrationIndex}
-\title{ A function to calculate the concentration index.
-}
+\title{A function to calculate the concentration index.}
+
 \description{
 This function calculates the relative concentration index (Kakwani et al), the generalized concentration index (Clarke et al, 2002) and the concentration index with Erreygers' correction (Erreygers et al, 2009).  It returns an object of class hci for which confidence intervals, summaries and plots are defined.
 }
+
 \usage{
 ci(x, y, wt = NULL, type = NULL)
 
