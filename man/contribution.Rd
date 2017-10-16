@@ -57,9 +57,20 @@ Speybroeck \emph{et al.}, 2009
 }
 
 \examples{
-data(kenya)
-simple_model <- lm(stunting ~ meduY + sex +  wealth + urban, data = kenya)
-simple_contrib <- contribution(simple_model, kenya$wealth)
-print(simple_contrib)
-plot(simple_contrib)
+data(nigeria)
+
+## fit multivariable model
+fit <-
+glm(zscore1 ~
+      quintile + ed + rural + region + male + bord + agechild + agemother,
+    data = nigeria,
+    weights = nigeria$weight)
+summary(fit)
+
+## decompose relative concentration index
+contrib <- contribution(fit, nigeria$wealth) 
+summary(contrib)
+par(mar = c(4, 8, 1, 1))
+plot(contrib, decreasing = FALSE,
+     horiz = TRUE, las = 1, xlab = "Contribution (\%)")
 }
