@@ -40,7 +40,7 @@ rpart_ci(
   cbind(wealth, zscore) ~
     quintile + ed + rural + region + male + bord + agechild + agemother,
   data = nigeria,
-  weigths = nigeria$weight,
+  weights = nigeria$weight,
   type = "CI")
 
 imp(tree, surrogates = FALSE, competes = TRUE)
