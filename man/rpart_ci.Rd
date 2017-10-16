@@ -45,7 +45,7 @@ data(nigeria)
 
 tree <-
 rpart_ci(
-  cbind(wealth, zscore) ~
+  cbind(wealth, zscore1) ~
     quintile + ed + rural + region + male + bord + agechild + agemother,
  data = nigeria,
  weights = nigeria$weight,
