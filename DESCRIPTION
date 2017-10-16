@@ -1,7 +1,7 @@
 Package: rineq
 Title: Statistical Analysis of Health Inequalities
 Version: 0.0.1
-Date: 2015-05-28
+Date: 2017-10-16
 Authors@R: c(person("Brecht", "Devleesschauwer", role = c("aut", "cre"),
 	                email = "brechtdv@gmail.com"),
              person("Saveria", "Willimès", role = c("aut"),
@@ -22,5 +22,5 @@ Description: Functions to calculate the relative, generalized, and Erreygers
     corrected concentration index; plot Lorenz curves; and decompose health
     inequalities using (generalized) linear models, survival models, and
     regression and binary trees.
-Depends: R (>= 3.0.0), rpart
+Depends: R (>= 3.4.0), rpart
 License: GPL-2 | GPL-3

@@ -37,7 +37,7 @@ function(x, y, wt = NULL, type = NULL) {
 	
 	# calculate ci for weighted microcase data
 	# see Lerman & Yitzhaki eq (3)
-	concentrationIndex <- 2 * sum(mydf$wt * (mydf$y - ybar) * (R - Rbar) / ybar)
+	concentration_index <- 2 * sum(mydf$wt * (mydf$y - ybar) * (R - Rbar) / ybar)
 	
 	# calculate individual's contribution to ci
 	# this is a vectorized form of the previous
@@ -49,21 +49,21 @@ function(x, y, wt = NULL, type = NULL) {
 	# see Kakwani et al (eq 14) with qi = qt, R = ft and y = x
 	qi <- cumsum(mydf$y) / sum(mydf$y)
 	qilag <- c(0, qi[-n])
-	ai <- mydf$y / ybar * (2 * R - 1 - concentrationIndex) + 
+	ai <- mydf$y / ybar * (2 * R - 1 - concentration_index) + 
 			2 - qilag - qi
-	varC <- (sum(ai^2) / n - (1 + concentrationIndex)^2) / n
+	varC <- (sum(ai^2) / n - (1 + concentration_index)^2) / n
 
 	# calculate the different type of concentration index
 	
       if (is.null(type)) {
-                 concentrationIndex <- concentrationIndex
+                 concentration_index <- concentration_index
                  type = "CI"	
       } else if (type == "CI"){
-                concentrationIndex <- concentrationIndex
+                concentration_index <- concentration_index
       } else if (type == "CIg"){
-                concentrationIndex <- concentrationIndex *  ybar
+                concentration_index <- concentration_index *  ybar
       } else if (type == "CIc"){
-                concentrationIndex <- 4 * concentrationIndex *  ybar / 
+                concentration_index <- 4 * concentration_index *  ybar / 
                                       (max(y, na.rm = TRUE) - min(y, na.rm = TRUE))
 
       }
@@ -71,8 +71,14 @@ function(x, y, wt = NULL, type = NULL) {
 
 
 	# return an object of class hci
-	ci <- list(concentrationIndex = concentrationIndex,type = type, variance = varC, 
-			fractionalRank = R, outcome = mydf$y, 'call' = match.call(), n = nrow(mydf))
+	ci <-
+	list(concentration_index = concentration_index,
+	     type = type,
+		 variance = varC, 
+		 fractional_rank = R,
+		 outcome = mydf$y,
+		 'call' = match.call(),
+		 n = nrow(mydf))
 	class(ci) <- "hci"
 	return(ci)
 }

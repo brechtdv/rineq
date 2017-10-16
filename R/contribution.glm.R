@@ -1,6 +1,5 @@
 contribution.glm <-
-function(object, ranker, correction = TRUE)
-    {
+function(object, ranker, correction = TRUE) {
     # The ranking variable (wealth, income,...) should be given explicitely.
     # Throw an error if this is not a numeric one
     if (class(ranker) != "numeric") stop("Not a numeric ranking variable")
@@ -20,4 +19,4 @@ function(object, ranker, correction = TRUE)
     # call the backend decomposition function
     results <- decomposition(outcome, betas, mm, ranker, wt, correction)
     return(results)
-    }
+}

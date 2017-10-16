@@ -1,6 +1,5 @@
-correctSign <-
-function(x, shift = TRUE)
-    {
+correct_sign <-
+function(x, shift = TRUE) {
     # we have to check for two things here:
     # 1/ sign(0) = 0, but this does not pose a problem, so leave them out of the test
     # 2/ NA should remain NA; since sign(NA) = NA we leave them out of the test
@@ -22,5 +21,5 @@ function(x, shift = TRUE)
 	}
     # return the original vector if everything is ok, otherwise the modified one.
     return(list(correctedx = x, modified = modified))
-    }
+}
 

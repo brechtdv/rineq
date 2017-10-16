@@ -8,33 +8,33 @@
 imp <- 
 function(object, surrogates = TRUE, competes = FALSE, ...) {
 
- allVars <- colnames(attributes(object$terms)$factors)
+ all_vars <- colnames(attributes(object$terms)$factors)
  tmp <- rownames(object$splits)
  if(is.null(rownames(object$splits))) {
      out <- NULL
-     zeros <- data.frame(x = rep(0, length(allVars)),Variable = allVars)
+     zeros <- data.frame(x = rep(0, length(all_vars)),Variable = all_vars)
      out <- rbind(out, zeros)
 
   } else {
 
-     rownames(object$splits) <- 1:nrow(object$splits)
+     rownames(object$splits) <- seq(nrow(object$splits))
      splits <- data.frame(object$splits)
      splits$var <- tmp
      splits$type <- ""
      frame <- as.data.frame(object$frame)
      index <- 0
-     for(i in 1:nrow(frame)) {
+     for(i in seq(nrow(frame))) {
         if(frame$var[i] != "<leaf>") {
             index <- index + 1
             splits$type[index] <- "primary"
                  if(frame$ncompete[i] > 0) {
-                    for(j in 1:frame$ncompete[i]) {
+                    for(j in seq(frame$ncompete[i])) {
                         index <- index + 1
                         splits$type[index] <- "competing"
                     }
                  }
                  if(frame$nsurrogate[i] > 0) {
-                    for(j in 1:frame$nsurrogate[i]) {
+                    for(j in seq(frame$nsurrogate[i])) {
                         index <- index + 1
                         splits$type[index] <- "surrogate"
                     }
@@ -45,7 +45,7 @@ function(object, surrogates = TRUE, competes = FALSE, ...) {
      
      # Correcting the "splits" object: splits$improve isn't the "improve" 
      # but the "adj" for surrogate spits
-     for (i in 1: nrow(splits)) {
+     for (i in seq(nrow(splits))) {
           if (splits$type[i] == "primary") {
               splits$correcting[i] <- splits$improve[i] 
           } else { 
@@ -57,15 +57,17 @@ function(object, surrogates = TRUE, competes = FALSE, ...) {
      if(!competes) splits <- subset(splits, type != "competing")
      out <- aggregate(splits$improve, list(Variable = splits$var), sum, na.rm = TRUE)
 
-     if(!all(allVars %in% out$Variable)) {
-        missingVars <- allVars[!(allVars %in% out$Variable)]
-        zeros <- data.frame(x = rep(0, length(missingVars)),Variable = missingVars)
+     if(!all(all_vars %in% out$Variable)) {
+        missing_vars <- all_vars[!(all_vars %in% out$Variable)]
+        zeros <- data.frame(x = rep(0, length(missing_vars)), Variable = missing_vars)
         out <- rbind(out, zeros)
      }
  }
  
- out2 <- data.frame(overall.importance = out$x, relative.importance= out$x * 100 / max(out$x, na.rm = TRUE))
+ out2 <-
+ data.frame(overall_importance = out$x,
+            relative_importance = out$x * 100 / max(out$x, na.rm = TRUE))
  rownames(out2) <- out$Variable
- out2 <- out2[order(-out2$relative.importance),]
+ out2 <- out2[order(-out2$relative_importance), ]
  out2
 }
