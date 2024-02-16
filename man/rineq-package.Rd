@@ -14,11 +14,11 @@ The \pkg{rineq} package provides functions to  calculate the relative, generaliz
   \tabular{ll}{
     Package:    \tab  rineq\cr
     Type:       \tab  Package\cr
-    Version:    \tab  0.0.1\cr
-    Date:       \tab  2017-10-16\cr
+    Version:    \tab  0.0.2\cr
+    Date:       \tab  2024-02-16\cr
     Authors:    \tab  Brecht Devleesschauwer, Saveria Willimes, Carine Van Malderen, Peter Konings, Niko Speybroeck\cr
     Maintainer: \tab  Brecht Devleesschauwer <\email{brechtdv@gmail.com}>\cr
-    Depends:    \tab  R (>= 3.4.0), rpart\cr
+    Depends:    \tab  R (>= 4.2.0), rpart\cr
     License:    \tab  GPL (>= 2)\cr
     LazyData:   \tab  true\cr
 }
